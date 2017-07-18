@@ -29,7 +29,7 @@ class Solution {
                 if (pairDirty[D[i]]==0)
                     pairDirty[D[i]]=1;
                 else {
-                    pairDirty[D[i]]=1;
+                    pairDirty[D[i]]=0;
                     readyDirty++;
                 }
             }            
