@@ -1,0 +1,43 @@
+// you can also use imports, for example:
+import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+class Solution {
+    public int solution(int K, int[] C, int[] D) {
+        int ready =0;
+        int readyDirty=0;
+        int [] tmp  = new int [51];
+        int [] pairDirty = new int[51];
+        for (int i=0 ; i < C.length ; i++){
+            if (tmp[C[i]]==0){
+                tmp[C[i]]++;
+            }else{
+                tmp[C[i]]=0;
+                ready++;
+            }
+        } 
+        for(int i=0; i<D.length ; i++){
+            if (K==0) 
+                return ready;
+            if (tmp[D[i]]==1){
+                tmp[D[i]]=0;
+                ready++;
+                K--;
+            }else{
+                if (pairDirty[D[i]]==0)
+                    pairDirty[D[i]]=1;
+                else {
+                    pairDirty[D[i]]=1;
+                    readyDirty++;
+                }
+            }            
+        }
+        if (K>0){
+            int availablePlace = K/2;
+            ready +=  availablePlace>readyDirty ? readyDirty : availablePlace;
+        }
+        return ready;
+    }
+}
